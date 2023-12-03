@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 
-from flask import Flask, send_from_directory, request
+from flask import Flask, send_from_directory, request, render_template
+import markdown
 
 app = Flask(__name__)
 
@@ -26,6 +27,19 @@ def t2i(args):
     draw.text((50, 20), text, font=font, fill=(0, 0, 0))
     image.save('./static/output.png')
 
+@app.route('/')
+def index():
+    input_file = "./README.md"
+    output_file = "./templates/output.html"
+
+    with open(input_file, "r",encoding="utf-8") as f:
+        markdown_text = f.read()
+
+    html_text = markdown.markdown(markdown_text)
+
+    with open(output_file, "w",encoding="utf-8") as f:
+        f.write(html_text)
+    return render_template("output.html")
 @app.route('/t2i',methods=['POST'])
 def t2i_page():
     text = request.form['text']
