@@ -5,7 +5,7 @@
 ## 依赖
 
 * Python 3.7+
-* Pillow
+* Pillow==9.5.0
 
 ## 使用
 
