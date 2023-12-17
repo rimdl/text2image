@@ -7,6 +7,11 @@
 * Python 3.7+
 * Pillow==9.5.0
 
+## 安装
+```python
+pip install -r requirements.txt
+```
+
 ## 使用
 
 * 文字转图片：
